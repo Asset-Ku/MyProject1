@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Document</title>
+    <th:block th:include="fragments/template :: headerfiles"></th:block>
+</head>
+<body>
+<header th:include="fragments/template :: header"></header>
+<div class="container mt-5">
+    <div th:if="${message}" th:class="'alert ' + 'alert-' +  ${messageType}" role="alert">
+        <div th:text="${message}"></div>
+    </div>
+    <p th:if="${error}">Wrong user or password</p>
+    <form th:action="@{/login}" method="post">
+        <div th:if="${param.error}">
+            <p style="font-size: 20mm; color: #FF1C19;">Email or Password invalid, please verify</p>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"> User Name : </label>
+            <div class="col-sm-6">
+                <input type="text" name="username" th:class="'form-control' + ${usernameError != null ? ' is-invalid' : ''}" placeholder="User name" />
+                <div th:if="${usernameError != null}" th:text="${usernameError}" class="invalid-feedback">username Error</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"> Password: </label>
+            <div class="col-sm-6">
+                <input type="password" name="password" th:class="'form-control' + ${passwordError != null ? ' is-invalid' : ''}" placeholder="Password"/>
+                <div th:if="${passwordError != null}" th:text="${passwordError}" class="invalid-feedback">username Error</div>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </form>
+    <a href="/registration">Registration</a>
+</div>
+<footer th:include="fragments/template :: footer"></footer>
+<th:block th:include="fragments/template :: footerfiles"></th:block>
+</body>
+</html>

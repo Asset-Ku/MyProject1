@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>header</title>
+    <th:block th:include="fragments/template :: headerfiles"></th:block>
+</head>
+<body>
+<header th:include="fragments/template :: header"></header>
+List of users
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.getRolesString()}"></td>
+        <td><a th:href="@{'/user/' + ${user.id}}">edit</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:include="fragments/template :: footer"></footer>
+<th:block th:include="fragments/template :: footerfiles"></th:block>
+</body>
+</html>

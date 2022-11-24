@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Document</title>
+    <th:block th:include="fragments/template :: headerfiles"></th:block>
+</head>
+<body>
+<header th:include="fragments/template :: header"></header>
+<div class="container mt-5">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <form action="/main" method="get" class="form-inline">
+                <input type="text" class="form-control" name="filter" th:value="${filter}" placeholder="Найти по тегу">
+                <button type="submit" class="btn btn-primary ml-2">Найти</button>
+            </form>
+        </div>
+    </div>
+
+    <th:block th:include="fragments/template :: messageEdit"></th:block>
+
+    <th:block th:include="fragments/template :: messageList"></th:block>
+
+</div>
+
+<footer th:include="fragments/template :: footer"></footer>
+
+<th:block th:include="fragments/template :: footerfiles"></th:block>
+
+
+</body>
+</html>

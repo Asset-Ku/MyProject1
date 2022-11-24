@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Success</title>
+    <th:block th:include="fragments/template :: headerfiles"></th:block>
+</head>
+<body>
+<header th:include="fragments/template :: header"></header>
+<div class="container mt-5">
+    <div th:if="${message}">
+        <div th:text="${message}"></div>
+    </div>
+</div>
+<footer th:include="fragments/template :: footer"></footer>
+<th:block th:include="fragments/template :: footerfiles"></th:block>
+</body>
+</html>
