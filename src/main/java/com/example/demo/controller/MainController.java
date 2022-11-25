@@ -155,7 +155,7 @@ public class MainController {
     public String deleteMessage(
             @AuthenticationPrincipal Users currentUser,
             @PathVariable Long user,
-            @RequestParam("id") Message message
+            @RequestParam("message") Message message
     ) throws IOException {
         System.out.println("sssssssssssssssssssssssssss");
         if (message.getAuthor().getUsername().equals(currentUser.getUsername())) {

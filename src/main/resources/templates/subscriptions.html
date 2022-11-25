@@ -6,15 +6,16 @@
 </head>
 <body>
 <header th:include="fragments/template :: header"></header>
-
-<div th:fragment="subscriptions">
-    <div th:text="${type}"></div>
-    <h3 th:text="${userChannel.username}"></h3>
-    <ul class="list-group" th:each="user: ${users}">
-        <li class="list-group-item">
-            <a th:href="@{'/user-messages/'} + ${user.id}" th:text="${user.getUsername()}"></a>
-        </li>
-    </ul>
+<div class="container my-3">
+    <div th:fragment="subscriptions">
+        <div th:text="${type}"></div>
+        <h3 th:text="${userChannel.username}"></h3>
+        <ul class="list-group" th:each="user: ${users}">
+            <li class="list-group-item">
+                <a th:href="@{'/user-messages/'} + ${user.id}" th:text="${user.getUsername()}"></a>
+            </li>
+        </ul>
+    </div>
 </div>
 <footer th:include="fragments/template :: footer"></footer>
 <th:block th:include="fragments/template :: footerfiles"></th:block>

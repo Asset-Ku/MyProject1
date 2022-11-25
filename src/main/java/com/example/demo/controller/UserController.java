@@ -76,7 +76,7 @@ public class UserController {
     }
 
     @GetMapping("unsubscribe/{users}")
-    public String ubsubscribe(
+    public String unsubscribe(
             @AuthenticationPrincipal Users currentUser,
             @PathVariable Users users
     ) {
