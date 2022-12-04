@@ -6,9 +6,21 @@
 </head>
 <body>
 <header th:include="fragments/template :: header"></header>
+
 <div class="container mt-5">
     <h5>Hello, <span class="navbar-text" sec:authentication="name">Guest</span>!</h5>
 </div>
+
+
+<!--<div class="container mt-5">-->
+<!--    <form method="get" th:action="@{/news}">-->
+<!--    </form>-->
+<!--    <h5 th:href="'/news}">-->
+<!--        <span th:text="${description}">Новость</span>-->
+<!--    </h5>-->
+<!--</div>-->
+
+
 <footer th:include="fragments/template :: footer"></footer>
 <th:block th:include="fragments/template :: footerfiles"></th:block>
 </body>

@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Message;
+import com.example.demo.entity.News;
 import com.example.demo.entity.Users;
 import com.example.demo.entity.dto.MessageDto;
 import com.example.demo.repository.MessageRepository;
 import com.example.demo.service.MessageService;
+import com.example.demo.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -20,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.context.WebContext;
 import org.thymeleaf.util.StringUtils;
 
 import javax.validation.Valid;
@@ -38,6 +42,9 @@ public class MainController {
     private String uploadPath;
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private NewsService newsService;
 
     @GetMapping("/")
     public String greeting(Model model) {
@@ -157,7 +164,6 @@ public class MainController {
             @PathVariable Long user,
             @RequestParam("message") Message message
     ) throws IOException {
-        System.out.println("sssssssssssssssssssssssssss");
         if (message.getAuthor().getUsername().equals(currentUser.getUsername())) {
             messageRepository.delete(message);
         }
@@ -181,5 +187,15 @@ public class MainController {
                 .entrySet()
                 .forEach(pair -> redirectAttributes.addAttribute(pair.getKey(), pair.getValue()));
         return "redirect:" + components.getPath();
+    }
+
+    @GetMapping("/news")
+    public Context getNews( Model model) throws IOException {
+
+        News news = newsService.getSomeNews();
+        Context ctx = new Context();
+        System.out.println(news.getArticles().get(0).getDescription());
+        ctx.setVariable("description", news.getArticles().get(0).getDescription());
+        return ctx;
     }
 }
