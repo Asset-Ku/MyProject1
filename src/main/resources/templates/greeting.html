@@ -11,6 +11,30 @@
     <h5>Hello, <span class="navbar-text" sec:authentication="name">Guest</span>!</h5>
 </div>
 
+<div class="container mt-5">
+    <tr th:each="someNews: ${news}">
+        <td>
+            <div >
+                 <span class="caption" th:text="${someNews.title}">title</span>
+            </div>
+            <div>
+                <a href="#" th:href="${someNews.url}" th:text="${someNews.description}">description</a>
+            </div>
+
+            <div>
+                <img th:src="${someNews.urlToImage}" alt="Mountain View"  style="width:634px;height:428px">
+            </div>
+
+            <div>
+                <span th:text="${someNews.source.name}">source</span>
+            </div>
+            <div class="write_block">
+                <span th:text="${someNews.author}">author</span>
+            </div>
+            <br>
+        </td>
+    </tr>
+</div>
 
 <!--<div class="container mt-5">-->
 <!--    <form method="get" th:action="@{/news}">-->

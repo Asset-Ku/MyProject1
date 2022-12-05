@@ -26,6 +26,8 @@ public class News {
         public String description;
         public String content;
         public Source source;
+        public String url;
+        public String urlToImage;
         @Data
         @NoArgsConstructor
         @AllArgsConstructor

@@ -29,9 +29,8 @@ import org.thymeleaf.util.StringUtils;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/")
@@ -48,6 +47,9 @@ public class MainController {
 
     @GetMapping("/")
     public String greeting(Model model) {
+        News news = newsService.getSomeNews();
+        List<News.Articles> articles = news.getArticles();
+        model.addAttribute("news", articles);
         return "greeting";
     }
 
@@ -187,15 +189,5 @@ public class MainController {
                 .entrySet()
                 .forEach(pair -> redirectAttributes.addAttribute(pair.getKey(), pair.getValue()));
         return "redirect:" + components.getPath();
-    }
-
-    @GetMapping("/news")
-    public Context getNews( Model model) throws IOException {
-
-        News news = newsService.getSomeNews();
-        Context ctx = new Context();
-        System.out.println(news.getArticles().get(0).getDescription());
-        ctx.setVariable("description", news.getArticles().get(0).getDescription());
-        return ctx;
     }
 }
